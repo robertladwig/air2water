@@ -18,7 +18,7 @@ How to cite:
 
 - Toffolon M., S. Piccolroaz, B. Majone, A.M. Soja, F. Peeters, M. Schmid and A. Wüest (2014), Prediction of surface water temperature from air temperature in lakes with different morphology, Limnology and Oceanography, 59(6), 2185-2202, doi:10.4319/lo.2014.59.6.2185
 
-- Toffolon M., S. Piccolroaz, and B. Majone (2015), The role of stratification on lakes' thermal response: The case of Lake Superior, Water Resources Research, 51(10), 7878-7894, doi:10.1002/2014WR016555 
+- Piccolroaz S.,  M. Toffolon, and B. Majone (2015), The role of stratification on lakes' thermal response: The case of Lake Superior, Water Resources Research, 51(10), 7878-7894, doi:10.1002/2014WR016555 
 
 - Piccolroaz S. (2016), Prediction of lake surface temperature using the air2water model: guidelines, challenges, and future perspectives, Advances in Oceanography and Limnology, 7:36-50, DOI: http://dx.doi.org/10.4081/aiol.2016.5791
 
