@@ -396,6 +396,7 @@ USE commondata
 IMPLICIT NONE
 
 INTEGER :: i, j
+CHARACTER(10) :: formt
 REAL(KIND=8) :: ei_check,ei
 
 par=par_best		! uso miglior set di paramteri
@@ -413,8 +414,10 @@ IF (ABS(ei_check - finalfit) .gt. 0.0001) THEN
 ELSE
     WRITE(*,*) 'Check completed'
 END IF
-    
-WRITE(11,'(<n_par>(f10.6,1x))') (par_best(i),i=1,n_par)
+
+write(formt,'("(",I1, "f10.6)" )') n_par    
+!WRITE(11,'(<n_par>(f10.6,1x))') (par_best(i),i=1,n_par)
+WRITE(11,formt) (par_best(i),i=1,n_par)
 WRITE(11,'(f10.6)') ABS(ei_check)
     	
 OPEN(UNIT=12,FILE=TRIM(folder)//'/2_'//TRIM(run)//'_'//fun_obj//'_'//TRIM(station)//'_'//series//'c_'//TRIM(time_res)//'.out',STATUS='unknown',ACTION='write')

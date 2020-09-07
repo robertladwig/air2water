@@ -29,7 +29,7 @@ REAL(KIND=8),ALLOCATABLE,DIMENSION(:) :: par, par_best
 REAL(KIND=8),ALLOCATABLE,DIMENSION(:) :: m, q, r2
 LOGICAL,ALLOCATABLE,DIMENSION(:) :: flag_par
 
-CHARACTER(len=100) :: folder
+CHARACTER(len=100) :: folder, mkfolder
 CHARACTER(LEN=30) :: name, air_station, water_station, station, run
 CHARACTER(LEN=1) :: series, unit
 CHARACTER(LEN=3) :: time_res

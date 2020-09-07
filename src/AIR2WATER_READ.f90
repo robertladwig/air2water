@@ -4,12 +4,13 @@
 SUBROUTINE read_calibration
 
 USE commondata
-USE ifport              ! necessario per il comando makedirqq
+!USE ifport              ! necessario per il comando makedirqq
 
 IMPLICIT NONE
 INTEGER:: i, j, status
 CHARACTER(LEN=1) :: string
-LOGICAL result          ! necessario per il comando makedirqq
+CHARACTER(10) :: formt
+!LOGICAL result          ! necessario per il comando makedirqq
 
 ! read input information
 OPEN(unit=1,file='input.txt',status='old',action='read')
@@ -34,7 +35,9 @@ CLOSE(1)
 station=TRIM(air_station)//'_'//TRIM(water_station)
 
 folder = TRIM(name)//'/output_'//TRIM(version)//'/'
-result=makedirqq(folder)
+mkfolder = 'mkdir '//TRIM(name)//'/output_'//TRIM(version)//'/'
+!result=makedirqq(folder)
+call system(mkfolder)
     
 WRITE(*,*) 'Objective function ',fun_obj
 
@@ -72,7 +75,7 @@ IF (run .eq. 'PSO' .or. run .eq. 'LATHYP') THEN
         
     n_parcal=0    
     DO i=1,n_par
-        IF (flag_par(i)==.true.) THEN
+        IF (flag_par(i) .eqv. .true.) THEN
             n_parcal=n_parcal+1
         END IF
     END DO
@@ -81,9 +84,12 @@ IF (run .eq. 'PSO' .or. run .eq. 'LATHYP') THEN
     CLOSE(1)
     	
     ! write parameters
+    write(formt,'("(",I1, "F10.5)" )') n_par
     OPEN(unit=2,file=TRIM(folder)//'/parameters.txt',status='unknown',action='write')
-    WRITE(2,'(<n_par>(F10.5,1x))') (parmin(i),i=1,n_par)
-    WRITE(2,'(<n_par>(F10.5,1x))') (parmax(i),i=1,n_par)
+    !WRITE(2,'(<n_par>(F10.5,1x))') (parmin(i),i=1,n_par)
+    !WRITE(2,'(<n_par>(F10.5,1x))') (parmax(i),i=1,n_par)
+    WRITE(2,formt) (parmin(i),i=1,n_par)
+    WRITE(2,formt) (parmax(i),i=1,n_par)
     CLOSE(2)
     
     IF (log_flag==1) THEN
@@ -181,7 +187,7 @@ ALLOCATE(delta(n_tot),stat=status)
 
 DO i=366,n_tot
 	READ(3,*) (date(i,j),j=1,3),Tair(i),Twat_obs(i)
-	IF (Twat_obs(i) .lt. 0 .and. Twat_obs(i) .ne. -999)
+	IF (Twat_obs(i) .lt. 0 .and. Twat_obs(i) .ne. -999) THEN
 	    Twat_obs(i)=0.0d0
 	END IF
 END DO
